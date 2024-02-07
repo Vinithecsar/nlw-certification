@@ -1,30 +1,30 @@
-package br.com.vinithecsar.certification_nlw.modules.students.entities;
+package br.com.vinithecsar.certification_nlw.modules.questions.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "students")
-public class StudentEntity {
+@Entity(name = "alternatives")
+public class AlternativesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(unique = true, nullable = false)
-    private String email;
+    private String description;
 
-    @OneToMany(mappedBy = "studentEntity")
-    private List<CertificationStudentEntity> certificationStudentEntity;
+    private boolean IsCorrect;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
