@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Caso de uso para processar as respostas de certificação dos estudantes.
+ */
 @Service
 public class StudentCertificationAnswersUseCase {
 
@@ -32,6 +35,13 @@ public class StudentCertificationAnswersUseCase {
     @Autowired
     private VerifyIfHasCertificationUseCase verifyIfHasCertificationUseCase;
 
+    /**
+     * Executa o processamento das respostas de certificação de um estudante.
+     *
+     * @param dto O objeto DTO contendo as respostas do estudante.
+     * @return A entidade {@link CertificationStudentEntity} de certificação do estudante criada.
+     * @throws Exception se o estudante já tiver uma certificação.
+     */
     public CertificationStudentEntity execute(StudentCertificationAnswerDTO dto) throws Exception {
 
         var hasCertification = this.verifyIfHasCertificationUseCase.execute(new VerifyHasCertificationDTO(dto.getEmail(), dto.getTechnology()));
